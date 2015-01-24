@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ -f ./slic3r.config.ini ]
+then 
+	echo "Usage: "$0" name_of_stl_file_without_suffix. Requires slic3r.confic.ini to be in this directory."
+
+# replace this variable with your path to slic3r 
+SLIC3R=/Applications/Slic3r.app/Contents/MacOS/slic3r
+$SLIC3R $1.stl --load ./slic3r.config.ini
+GCODE=$1.gcode
+PREFACE="; filename = composition.3w\n; machine = daVinciF10\n; material = abs\n; layer_height = 0.3\n; total_layers = 233\n; total_filament = 4930.64\n; extruder = 1\n"
+FULLFILE=$PREFACE$(cat $GCODE)
+echo "=> Sending "$GCODE" to wifi sd card"
+printf $FULLFILE | nc 192.168.11.254 9876
+echo "=> Published " $GCODE
