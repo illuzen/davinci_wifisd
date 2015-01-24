@@ -2,6 +2,10 @@
 
 This is set of scripts that enables one to print .stl files on a davinci 1.0 3d printer without using xyz's shitty closed-source software. 
 
+Shout-outs and snuggles to Pablo at Haxit and Mark Fuller, whose work made this possible. 
+
+And thanks to xyzprinting for making an awesome piece of hardware :D
+
 
 
 Prerequisites:
