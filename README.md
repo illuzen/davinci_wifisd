@@ -20,7 +20,7 @@ Prerequisites:
 
 2) Davinci 1.0 3d Printer
 
-3) Slic3r
+3) Slic3r on a computer with a wifi card
 
 4) Screwdriver
 
@@ -32,7 +32,7 @@ Instructions:
 
 1) Mount the Transcend WIFI SD card onto your computer somehow (usb adapter or sd port)
 
-2) Copy the contents of the directory sd/ onto the SD card. On the next boot, the card will run autorun.sh, which installs busybox and opens a netcat process listening for gcode files on port 9876.
+2) Copy the contents of the directory ./sd/ onto the SD card. On the next boot, the card will run autorun.sh, which installs busybox and opens a netcat process listening for gcode files on port 9876.
 
 3) Eject the wifi sd card.
 
@@ -40,15 +40,13 @@ Instructions:
 
 5) Insert the wifi sd card into the sd port.
 
-6) Start the printer. This will power on the wifi sd card.
+6) Plug in the printer and power it on. This will power on the wifi sd card, creating a wifi network after a couple minutes.
 
-7) Get a computer with a functioning wifi card and connect to the wifi card. The wifi network should be named "WIFISD" and the password will probably be 12345678 unless someone changed it.
+7) Get your computer with slic3r and a functioning wifi card and connect to the wifi card. The wifi network should be named "WIFISD" and the password will probably be 12345678 unless someone changed it.
 
 8) Open /client/3d_print in a text editor and set the SLIC3R variable to the path to your installation of slic3r. Save and close the file.
 
 9) Get a .stl file you want to print and run the /client/3d_print script with the name of the .stl file as the first argument, leaving off the suffix. 
-
-
 
 Example:
 
@@ -58,7 +56,9 @@ I want to print /path/to/rose.stl so I enter the following command
 
 Notice I left off the suffix. 
 
-Now the script should run slic3r on your .stl file and then prepend it with some comments that the printer likes and then netcat it over to the printer.
+Now the script should run slic3r on your .stl file to output a .gcode file and then prepend it with some comments that the printer likes and then netcat it over to the printer.
+
+10) Finally, when the script tells you that it published the file, go to the printer, click on Utilities, Build Sample, Star Vase. It won't be a star vase, it will be what you published.
 
 Happy printing!
   
